@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0A0A0F;
+  --surface: #12121A;
+  --surface-2: #1A1A26;
+  --border: #2A2A3E;
+  --text-primary: #F0F0FF;
+  --text-muted: #8B8BA7;
+}
+
+:root.light {
+  --bg: #F8F8FF;
+  --surface: #FFFFFF;
+  --surface-2: #F0F0FA;
+  --border: #E2E2F0;
+  --text-primary: #1A1A2E;
+  --text-muted: #6B6B85;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+::selection { background: rgba(108, 59, 255, 0.4); color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3A55; }
+
+@layer components {
+  .glass {
+    background: color-mix(in oklab, var(--surface) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .card {
+    @apply rounded-xl border bg-[var(--surface)] border-[var(--border)];
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn px-4 py-2 text-white;
+    background: linear-gradient(135deg, #6C3BFF 0%, #8B5CF6 100%);
+    box-shadow: 0 4px 16px -4px rgba(108,59,255,0.5);
+  }
+  .btn-primary:hover { box-shadow: 0 0 24px rgba(108,59,255,0.55); transform: translateY(-1px); }
+  .btn-ghost {
+    @apply btn px-3 py-2 text-[var(--text-primary)] hover:bg-[var(--surface-2)];
+  }
+  .btn-outline {
+    @apply btn px-4 py-2 border border-[var(--border)] text-[var(--text-primary)] hover:bg-[var(--surface-2)];
+  }
+  .input {
+    @apply w-full rounded-lg border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 transition;
+  }
+  .label {
+    @apply block text-xs font-medium text-[var(--text-muted)] mb-1.5 uppercase tracking-wider;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium border;
+  }
+  .table-row-hover {
+    @apply hover:bg-[var(--surface-2)] transition-colors;
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-0;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #6C3BFF 0%, #00E5BE 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(108,59,255,0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
